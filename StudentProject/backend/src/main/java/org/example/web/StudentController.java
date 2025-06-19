@@ -30,27 +30,31 @@ public class StudentController {
         return ResponseEntity.ok(this.studentApplicationService.findAll());
     }
 
+    // TODO
     @PostMapping("/add-student")
     @PreAuthorize("hasRole('ADMIN')")
     public ResponseEntity<Optional<DisplayStudentDTO>> addStudent(@RequestBody CreateStudentDTO createStudentDTO) {
         return ResponseEntity.ok(this.studentApplicationService.create(createStudentDTO));
     }
 
+    // TODO
     @PutMapping("/edit-student/{index}")
     @PreAuthorize("hasRole('ADMIN')")
-    public ResponseEntity<Optional<DisplayStudentDTO>> editStudent(@PathVariable String index,
+    public ResponseEntity<Optional<DisplayStudentDTO>> editStudent(@PathVariable("index") String index,
                                                                    @RequestBody CreateStudentDTO createStudentDTO) {
         return ResponseEntity.ok(this.studentApplicationService.update(index, createStudentDTO));
     }
 
+    // TODO
     @DeleteMapping("/delete-student/{index}")
     @PreAuthorize("hasRole('ADMIN')")
-    public ResponseEntity<Void> deleteStudent(@PathVariable String index) {
+    public ResponseEntity<Void> deleteStudent(@PathVariable("index") String index) {
         this.studentApplicationService.delete(index);
 
         return ResponseEntity.noContent().build();
     }
 
+    // TODO
     @GetMapping("/search")
     @PreAuthorize("isAuthenticated()")
     public ResponseEntity<List<DisplayStudentDTO>> searchStudentsByIndex(@RequestParam("q") String query) {

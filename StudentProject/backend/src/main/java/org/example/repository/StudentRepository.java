@@ -8,6 +8,6 @@ import java.util.Optional;
 
 @Repository
 public interface StudentRepository extends JpaRepository<Student, String> {
+
     List<Student> findByIndexContainingIgnoreCase(String indexPart);
-    Optional<Student> findByIndex(String index);
 }

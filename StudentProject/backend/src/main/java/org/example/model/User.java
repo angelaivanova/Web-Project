@@ -29,7 +29,8 @@ public class User implements UserDetails {
     private boolean isCredentialsNonExpired = true;
     private boolean isEnabled = true;
 
-    @Enumerated(value = EnumType.STRING)
+    @Enumerated(EnumType.STRING)
+    @Column(name = "role")
     private Role role;
 
     @OneToMany(mappedBy = "user")

@@ -9,7 +9,24 @@ body {
 }
 
 .navbar {
-    background: linear-gradient(to right, #000000, #434343);
+    background: linear-gradient(135deg, #000000, #434343, #1f1f1f);
+    background-size: 400% 400%;
+    animation: gradientShift 5s ease infinite;
+    box-shadow: 0 4px 10px rgba(0, 0, 0, 0.6);
+    border-bottom: 2px solid rgba(255, 255, 255, 0.1);
+    padding: 0.75rem 1.5rem;
+}
+
+@keyframes gradientShift {
+    0% {
+        background-position: 0% 50%;
+    }
+    50% {
+        background-position: 100% 50%;
+    }
+    100% {
+        background-position: 0% 50%;
+    }
 }
 
 .navbar-brand {
@@ -17,7 +34,7 @@ body {
 }
 
 #nav-tabs {
-    font-size: 18px;
+    font-size: 20px;
     letter-spacing: 5px;
     word-spacing: 20px;
 }

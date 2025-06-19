@@ -2,13 +2,24 @@ import axios from '../../custom-axios/axios';
 
 const API_URL = "/auth/";
 
+let subscribers = [];
+
+const notifySubscribers = () => {
+    const user = getCurrentUser();
+    subscribers.forEach(callback => callback(user));
+};
+
+const subscribe = (callback) => {
+    subscribers.push(callback);
+    callback(getCurrentUser());
+    return () => {
+        subscribers = subscribers.filter(cb => cb !== callback);
+    };
+};
+
 const register = (name, surname, username, password, role) => {
     return axios.post(API_URL + "register", {
-        name,
-        surname,
-        username,
-        password,
-        role,
+        name, surname, username, password, role,
     }).then((response) => {
         if (response.data.access_token) {
             const userData = {
@@ -17,6 +28,7 @@ const register = (name, surname, username, password, role) => {
                 role: response.data.user?.role || role || null,
             };
             localStorage.setItem("user", JSON.stringify(userData));
+            notifySubscribers();
         }
         return response.data;
     });
@@ -31,10 +43,12 @@ const login = (username, password) => {
             const userData = {
                 access_token: response.data.access_token,
                 username: response.data.user?.username || username,
-                role: response.data.user?.role || null,
+
+                role: response.data.role || null,
+
             };
             localStorage.setItem("user", JSON.stringify(userData));
-            window.location.reload();
+            notifySubscribers();
         }
         return response.data;
     });
@@ -42,7 +56,7 @@ const login = (username, password) => {
 
 const logout = () => {
     localStorage.removeItem("user");
-    window.location.reload();
+    notifySubscribers();
 };
 
 const getCurrentUser = () => {
@@ -54,6 +68,7 @@ const authService = {
     login,
     logout,
     getCurrentUser,
+    subscribe,
 };
 
 export default authService;

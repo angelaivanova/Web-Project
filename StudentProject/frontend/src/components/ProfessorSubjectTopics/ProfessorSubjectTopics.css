@@ -97,6 +97,8 @@
     background-color: mediumseagreen;
     color: black;
     font-size: 15px;
+    border-radius: 50px;
+    padding: 5px;
 }
 
 .pst-add-button:hover{
@@ -108,6 +110,8 @@
     background-color: mediumseagreen;
     color: black;
     font-size: 15px;
+    border-radius: 50px;
+    padding: 5px;
 }
 
 .pst-edit-button:hover {
@@ -119,6 +123,8 @@
     background-color: red;
     color: black;
     font-size: 15px;
+    border-radius: 50px;
+    padding: 5px;
 }
 
 .pst-deletet-button:hover {
@@ -130,6 +136,8 @@
     background-color: royalblue;
     color: black;
     font-size: 15px;
+    border-radius: 50px;
+    padding: 5px;
 }
 
 .pst-choose-topic-button:hover {
@@ -141,6 +149,8 @@
     background-color: rebeccapurple;
     color: black;
     font-size: 15px;
+    border-radius: 50px;
+    padding: 5px;
 }
 
 .pst-view-teams-button:hover {
@@ -177,6 +187,7 @@
     color: white;
     margin: 30px;
     width: 250px;
+    border-radius: 50px;
 }
 
 .back-button-subjects-by-professor:hover {

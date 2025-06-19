@@ -7,7 +7,6 @@ import lombok.Setter;
 import lombok.ToString;
 import org.hibernate.Hibernate;
 import org.example.model.enumerations.SemesterType;
-import java.util.List;
 import java.util.Objects;
 
 @Getter

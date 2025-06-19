@@ -1,0 +1,121 @@
+.subject-topics-container {
+    max-width: 900px;
+    margin: 0 auto;
+    justify-items: center;
+}
+
+.subject-topics-container .row {
+    display: flex;
+    flex-wrap: wrap;
+    justify-content: center;
+    gap: 1.5rem;
+}
+
+.subject-topics-container .col-12.col-md-6 {
+    display: flex;
+    justify-content: center;
+}
+
+.subject-topics-container .topic-card {
+    width: 100%;
+    max-width: 700px;
+    min-width: 350px;
+    background: linear-gradient(135deg, #0d1b2a, #1b263b);
+    border-radius: 1rem;
+    color: #fff;
+    box-shadow: 0 12px 20px rgba(0, 0, 0, 0.3);
+    display: flex;
+    flex-direction: column;
+    padding: 1.25rem 1.5rem;
+    transition: transform 0.3s ease, box-shadow 0.3s ease;
+}
+
+.subject-topics-container .topic-card:hover {
+    transform: translateY(-6px) scale(1.03);
+    box-shadow: 0 16px 30px rgba(0, 0, 0, 0.4), 0 0 20px rgba(109, 213, 250, 0.3);
+}
+
+.subject-topics-container .topic-card-body {
+    display: flex;
+    flex-direction: column;
+    height: 100%;
+}
+
+.subject-topics-container .topic-card-title {
+    font-size: 1.75rem;
+    font-weight: 700;
+    margin-bottom: 0.75rem;
+    text-shadow: 1px 1px 4px #000;
+}
+
+.subject-topics-container .topic-card-text {
+    flex-grow: 0;
+    font-size: 1rem;
+    margin-bottom: 0.5rem;
+    color: #ddd;
+}
+
+.subject-topics-container .btn-topic-primary {
+    margin-top: auto;
+    background-color: #007bff;
+    border: none;
+    font-weight: 600;
+    padding: 0.6rem 1.2rem;
+    border-radius: 0.5rem;
+    transition: background-color 0.2s ease, transform 0.2s ease;
+    color: white;
+    text-align: center;
+    display: inline-block;
+    text-decoration: none;
+}
+
+.subject-topics-container .btn-topic-primary:hover {
+    background-color: #0056b3;
+    transform: translateY(-2px);
+    color: white;
+}
+
+.subject-topics-container .back-button-topics {
+    background-color: transparent;
+    border: 1.5px solid white;
+    padding: 0.5rem 1rem;
+    border-radius: 0.5rem;
+    font-weight: 600;
+    transition: background-color 0.3s ease, color 0.3s ease;
+    color: white;
+}
+
+.subject-topics-container .back-button-topics:hover {
+    background-color: rgba(255, 255, 255, 0.15);
+    color: #0d6efd;
+}
+
+.subject-topics-alert {
+    width: 300px;
+}
+
+.subject-topics-title {
+    color: antiquewhite;
+    font-size: 40px;
+    margin-bottom: 20px;
+    text-align: center;
+    transition: color 0.3s, text-shadow 0.3s;
+}
+
+.subject-topics-title:hover {
+    color: #ffffff;
+    text-shadow: 0 0 10px rgba(109, 213, 250, 0.6);
+}
+
+.back-button-topics-by-subject {
+    background-color: black;
+    color: white;
+    margin: 30px;
+    width: 160px;
+    border-radius: 50px;
+}
+
+.back-button-topics-by-subject:hover {
+    background-color: dimgray;
+    color: black;
+}

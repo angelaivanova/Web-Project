@@ -22,12 +22,12 @@ public class AuthenticationController {
     }
 
     @PostMapping("/register")
-    public ResponseEntity<AuthenticationResponse> register(@RequestBody User request){
+    public ResponseEntity<AuthenticationResponse> register(@RequestBody User request) {
         return ResponseEntity.ok(authenticationService.register(request));
     }
 
     @PostMapping("/login")
-    public ResponseEntity<AuthenticationResponse> login(@RequestBody User request){
+    public ResponseEntity<AuthenticationResponse> login(@RequestBody User request) {
         return ResponseEntity.ok(authenticationService.authenticate(request));
     }
 
@@ -36,6 +36,6 @@ public class AuthenticationController {
             HttpServletResponse response,
             HttpServletRequest request
     ) {
-        return authenticationService.refreshToken(request,response);
+        return authenticationService.refreshToken(request, response);
     }
 }

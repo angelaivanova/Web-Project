@@ -1,6 +1,5 @@
 package org.example.web;
 
-import org.example.service.application.TeamApplicationService;
 import org.springframework.http.HttpStatus;
 import org.example.model.DTOs.teamDTO.CreateTeamDTO;
 import org.example.model.DTOs.teamDTO.DisplayTeamDTO;

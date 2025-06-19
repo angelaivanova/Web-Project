@@ -8,5 +8,6 @@ public interface ProfessorApplicationService {
     List<DisplayProfessorDTO> findAll();
 
     Optional<DisplayProfessorDTO> findByID(String id);
+
     List<DisplayProfessorDTO> findByName(String name);
 }

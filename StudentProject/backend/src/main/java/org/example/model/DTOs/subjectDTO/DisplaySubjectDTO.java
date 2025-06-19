@@ -1,11 +1,9 @@
 package org.example.model.DTOs.subjectDTO;
 
 import org.example.model.Professor;
-import org.example.model.Semester;
 import org.example.model.Student;
 import org.example.model.Subject;
 import org.example.model.enumerations.SemesterType;
-
 import java.util.List;
 import java.util.stream.Collectors;
 

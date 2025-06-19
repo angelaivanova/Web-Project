@@ -1,11 +1,9 @@
-// src/custom-axios/axios.js
 import axios from 'axios';
 
 const instance = axios.create({
     baseURL: 'http://localhost:8081/api',
 });
 
-// Attach JWT automatically
 instance.interceptors.request.use(config => {
     const user = JSON.parse(localStorage.getItem('user'));
     if (user?.access_token) {

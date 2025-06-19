@@ -4,7 +4,6 @@ import org.example.model.Student;
 import org.example.model.Team;
 import org.example.model.Topic;
 import org.example.model.exceptions.TopicIsAlreadyFullException;
-import org.example.repository.StudentRepository;
 import org.example.repository.TopicRepository;
 import org.example.service.domain.TopicDomainService;
 import org.springframework.stereotype.Service;

@@ -45,7 +45,6 @@
             <groupId>org.springframework.boot</groupId>
             <artifactId>spring-boot-starter-security</artifactId>
         </dependency>
-
         <!-- Lombok -->
         <dependency>
             <groupId>org.projectlombok</groupId>
@@ -53,20 +52,17 @@
             <version>1.18.30</version>
             <scope>provided</scope>
         </dependency>
-
         <!-- PostgreSQL JDBC Driver -->
         <dependency>
             <groupId>org.postgresql</groupId>
             <artifactId>postgresql</artifactId>
         </dependency>
-
         <!-- Jakarta Persistence API -->
         <dependency>
             <groupId>jakarta.persistence</groupId>
             <artifactId>jakarta.persistence-api</artifactId>
             <version>3.1.0</version>
         </dependency>
-
         <!-- JWT -->
         <dependency>
             <groupId>io.jsonwebtoken</groupId>
@@ -85,7 +81,6 @@
             <version>0.12.6</version>
             <scope>runtime</scope>
         </dependency>
-
         <!-- Testing -->
         <dependency>
             <groupId>org.springframework.boot</groupId>
@@ -98,7 +93,6 @@
             <scope>test</scope>
         </dependency>
     </dependencies>
-
     <build>
         <plugins>
             <!-- Spring Boot Maven Plugin -->
@@ -124,9 +118,5 @@
                 </configuration>
             </plugin>
         </plugins>
-
-
-
     </build>
-
 </project>

@@ -1,6 +1,5 @@
 package org.example.service.application.Impl;
 
-import org.example.model.DTOs.professorDTO.CreateProfessorDTO;
 import org.example.model.DTOs.professorDTO.DisplayProfessorDTO;
 import org.example.service.application.ProfessorApplicationService;
 import org.example.service.domain.ProfessorDomainService;

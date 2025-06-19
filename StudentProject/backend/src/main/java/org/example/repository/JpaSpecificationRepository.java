@@ -8,6 +8,7 @@ import java.util.List;
 
 @NoRepositoryBean
 public interface JpaSpecificationRepository<T, ID> extends JpaRepository<T, ID> {
+
     Page<T> findAll(Specification<T> filter, Pageable page);
 
     List<T> findAll(Specification<T> filter);

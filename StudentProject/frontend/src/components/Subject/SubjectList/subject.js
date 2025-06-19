@@ -46,21 +46,22 @@ const Subject = ({ subjects, onSearchSubjects }) => {
                 <h2>Subjects</h2>
             </div>
 
-            <form className="mb-4" onSubmit={handleSearchSubmit}>
-                <div className="row g-2 align-items-end">
+            <form className="search-form mb-4" onSubmit={handleSearchSubmit}>
+                <div className="row align-items-center g-2">
                     <div className="col-md-5">
-                        <label className="form-label">Subject Name</label>
+                        <label className="form-label mb-1">Subject Name</label>
                         <input
                             type="text"
                             className="form-control"
                             name="name"
+                            placeholder="Enter name..."
                             value={name}
                             onChange={handleInputChange}
                         />
                     </div>
 
                     <div className="col-md-4">
-                        <label className="form-label">Semester Type</label>
+                        <label className="form-label mb-1">Semester Type</label>
                         <select
                             className="form-select"
                             name="semesterType"
@@ -73,9 +74,9 @@ const Subject = ({ subjects, onSearchSubjects }) => {
                         </select>
                     </div>
 
-                    <div className="col-md-3">
+                    <div className="col-md-3 d-flex align-items-end">
                         <button type="submit" className="btn btn-primary w-100">
-                            Search
+                            Search!
                         </button>
                     </div>
                 </div>

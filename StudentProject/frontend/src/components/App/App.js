@@ -14,7 +14,6 @@ import Student from "../Student/StudentList/student"
 import TopicAdd from "../Topic/TopicAdd/topicAdd";
 import TopicEdit from "../Topic/TopicEdit/topicEdit";
 import ProfessorSubjectsPage from "../ProfessorSubjects/ProfessorSubjectsPage";
-import ProfessorTopics from "../ProfessorTopic/ProfessorTopic";
 import SubjectTopicPage from "../SubjectTopic/SubjectTopicPage";
 import CreateTeam from "../Team/CreateTeam/CreateTeam";
 import StudentAdd from "../Student/StudentAdd/studentAdd";
@@ -58,7 +57,7 @@ class App extends Component {
     searchProfessors = (name) => {
         AppService.searchProfessorsByName(name)
             .then((data) => {
-                this.setState({ professors: data.data });
+                this.setState({professors: data.data});
             })
             .catch((error) => console.error("Error searching professors:", error));
     };
@@ -92,7 +91,7 @@ class App extends Component {
     searchSubjects = (name, semesterType) => {
         AppService.searchSubjects(name, semesterType)
             .then((data) => {
-                this.setState({ subjects: data.data });
+                this.setState({subjects: data.data});
             })
             .catch((error) => console.error("Error searching subjects:", error));
     };
@@ -203,39 +202,64 @@ class App extends Component {
 
                             <Route
                                 path="/subject-allocations/:professorId/subjects"
-                                element={<ProfessorSubjectsPage/>}/>
-                            {/* <Route
-                                path="/subject-allocations/professors/:professorId/topics"
-                                element={<ProfessorTopics/>}/> */}
+                                element={<ProfessorSubjectsPage/>
+                                }
+                            />
 
                             <Route path="/subject-allocations/subjects/:subjectId/topics"
-                                   element={<SubjectTopicPage/>}/>
+                                   element={<SubjectTopicPage/>
+                                   }
+                            />
 
                             <Route
                                 path="/subject-allocations/professors/:professorId/subjects/:subjectId/topics/add-topic"
                                 element={<TopicAdd
-                                    onAddTopic={this.addTopic}/>}/>
+                                    onAddTopic={this.addTopic}/>
+                                }
+                            />
 
                             <Route
                                 path="/subject-allocations/topics/:id/professors/:professorId/subjects/:subjectId/edit-topic"
                                 element={<TopicEdit
                                     topics={this.state.topics}
-                                    onEditTopic={this.updateTopic}/>}/>
+                                    onEditTopic={this.updateTopic}/>
+                                }
+                            />
 
                             <Route
                                 path="/teams/create-team/:topicId"
-                                element={<CreateTeam/>}/>
+                                element={<CreateTeam/>
+                                }
+                            />
 
                             <Route path="/teams/topic/:topicId"
-                                   element={<TeamsByTopic/>}/>
+                                   element={<TeamsByTopic/>
+                                   }
+                            />
 
-                            <Route path="/subject-allocations/professors/:professorId/subjects/:subjectId/topics" 
-                            element={<ProfessorSubjectTopics />} />
+                            <Route path="/subject-allocations/professors/:professorId/subjects/:subjectId/topics"
+                                   element={<ProfessorSubjectTopics/>
+                                   }
+                            />
 
                             {/*PATHS*/}
-                            <Route path="/" element={<Navigate to="/subjects"/>}/>
-                            <Route path="/login" element={<Login/>}/>
-                            <Route path="/register" element={<Register/>}/>
+                            <Route
+                                path="/"
+                                element={<Navigate to="/subjects"/>
+                                }
+                            />
+
+                            <Route
+                                path="/login"
+                                element={<Login/>
+                                }
+                            />
+
+                            <Route
+                                path="/register"
+                                element={<Register/>
+                                }
+                            />
                         </Routes>
                     </div>
                 </main>

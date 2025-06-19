@@ -9,7 +9,7 @@ const SubjectTerm = ({ term }) => {
     };
 
     return (
-        <div className="col-sm-6 col-md-4 col-lg-3">
+        <div className="col-sm-6 col-md-4 col-lg-3 subject-card mb-4">
             <div className="card shadow-sm rounded-3 h-100">
                 <div className="card-body d-flex flex-column">
                     <h5 className="card-title">{term.name}</h5>

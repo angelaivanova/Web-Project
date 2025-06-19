@@ -10,7 +10,6 @@ import org.example.repository.StudentRepository;
 import org.example.repository.TeamRepository;
 import org.example.repository.TopicRepository;
 import org.example.service.application.TopicApplicationService;
-import org.example.service.domain.ProfessorDomainService;
 import org.example.service.domain.TopicDomainService;
 import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
@@ -33,7 +32,6 @@ public class TopicApplicationServiceImpl implements TopicApplicationService {
         this.studentRepository = studentRepository;
         this.teamRepository = teamRepository;
     }
-
 
     @Override
     public List<DisplayTopicDTO> findAll() {

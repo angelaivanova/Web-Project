@@ -1,9 +1,9 @@
-.professor-container {
+.topic-container {
     margin-top: 40px;
     animation: fadeIn 0.6s ease;
 }
 
-.professors-title {
+.topics-title {
     color: antiquewhite;
     font-size: 40px;
     margin-bottom: 20px;
@@ -11,12 +11,11 @@
     transition: color 0.3s, text-shadow 0.3s;
 }
 
-.professors-title:hover {
+.topics-title:hover {
     color: #ffffff;
     text-shadow: 0 0 10px rgba(109, 213, 250, 0.6);
 }
 
-.professor-search input,
 input.form-control {
     padding: 12px 16px;
     font-size: 16px;
@@ -38,65 +37,12 @@ input.form-control:focus {
     outline: none;
 }
 
-.row {
-    display: flex;
-    flex-wrap: wrap;
-    gap: 1.5rem;
-    justify-content: center;
-}
-
-.professor-card .card {
-    background: linear-gradient(135deg, #0d1b2a, #1b263b);
-    border: none;
+.table-dark {
+    background-color: #0d1b2a;
     color: #fff;
-    transition: transform 0.3s ease, box-shadow 0.3s ease;
     border-radius: 1rem;
-    height: 100%;
     overflow: hidden;
     box-shadow: 0 12px 20px rgba(0, 0, 0, 0.3);
-}
-
-.professor-card .card:hover {
-    transform: translateY(-6px) scale(1.02);
-    box-shadow: 0 16px 30px rgba(0, 0, 0, 0.4), 0 0 20px rgba(109, 213, 250, 0.2);
-}
-
-.professor-card .card-body {
-    padding: 20px;
-    display: flex;
-    flex-direction: column;
-    overflow: visible;
-    white-space: normal;
-    word-break: break-word;
-}
-
-.professor-card .card-title {
-    font-size: 1.5rem;
-    font-weight: bold;
-    color: #ffffff;
-    text-shadow: 1px 1px 3px #000;
-}
-
-.professor-card .card-text {
-    color: #f0f0f0;
-    font-size: 0.95rem;
-    margin-bottom: auto;
-}
-
-.professor-card button {
-    background-color: royalblue;
-    border: none;
-    color: white;
-    padding: 10px;
-    margin-top: 20px;
-    border-radius: 0.5rem;
-    font-weight: bold;
-    transition: background-color 0.2s ease, transform 0.2s ease;
-}
-
-.professor-card button:hover {
-    background-color: dodgerblue;
-    transform: translateY(-2px);
 }
 
 .pagination {

@@ -100,7 +100,7 @@ function ProfessorSubjectTopics() {
         <div className="container mt-4">
             <div className="d-flex justify-content-between align-items-center mb-4 title">
                 <h2 className="mb-0">
-                    Subject:<span> {subjectName || subjectId}</span>
+                    Subject:<span> <strong>{subjectName || subjectId}</strong></span>
                 </h2>
                 {role === "ROLE_PROFESSOR" && (
                 <Link
@@ -140,7 +140,7 @@ function ProfessorSubjectTopics() {
                                         <>
                                     <Link
                                         to={`/subject-allocations/topics/${topic.id}/professors/${professorId}/subjects/${topic.subjectId}/edit-topic`}
-                                        className="btn btn-outline-info btn-sm pst-edit-button"
+                                        className="btn btn-outline-info btn-sm pst-edit-button mt-2"
                                     >
                                         ✏️ Edit!
                                     </Link>
@@ -161,7 +161,7 @@ function ProfessorSubjectTopics() {
                                     </Link>
                                             )}
                                     <button
-                                        className="btn btn-secondary btn-sm mt-2 pst-view-teams-button"
+                                        className="btn btn-secondary btn-sm pst-view-teams-button"
                                         onClick={() => navigate(`/teams/topic/${topic.id}`)}
                                     >
                                         👥 View Teams!

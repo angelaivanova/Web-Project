@@ -40,7 +40,7 @@ public class TopicController {
 
     @GetMapping("/{topicId}/is-closed")
     @PreAuthorize("hasAnyRole('PROFESSOR', 'STUDENT')")
-    public ResponseEntity<Boolean> isClosed(@PathVariable String topicId) {
+    public ResponseEntity<Boolean> isClosed(@PathVariable("topicId") String topicId) {
         return ResponseEntity.ok(subjectAllocationService.isClosed(topicId));
     }
 
