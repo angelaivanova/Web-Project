@@ -1,15 +1,11 @@
-import React, { useEffect, useState } from "react";
+import React, {useEffect, useState} from "react";
 import api from "../../custom-axios/axios";
 import {useParams, Link, useNavigate} from "react-router-dom";
 import './ProfessorSubjects.css';
 
-function ProfessorSubjects({ professorId: propProfessorId }) {
-    const { professorId: urlProfessorId } = useParams();
+function ProfessorSubjects({professorId: propProfessorId}) {
+    const {professorId: urlProfessorId} = useParams();
     const professorId = propProfessorId || urlProfessorId;
-
-    console.log("professorId from URL:", urlProfessorId);
-    console.log("professorId from props:", propProfessorId);
-    console.log("Using professorId:", professorId);
 
     const [subjects, setSubjects] = useState([]);
     const [loading, setLoading] = useState(true);
@@ -26,17 +22,13 @@ function ProfessorSubjects({ professorId: propProfessorId }) {
         setLoading(true);
         setError(null);
 
-        console.log("Making API call for professorId:", professorId);
-
         api
             .get(`/subject-allocations/${professorId}/subjects`)
             .then((res) => {
-                console.log("API Response:", res.data);
                 setSubjects(res.data || []);
                 setLoading(false);
             })
             .catch((err) => {
-                console.error("API Error:", err);
                 setError(`Failed to load subjects: ${err.message || 'Unknown error'}`);
                 setLoading(false);
             });
@@ -50,16 +42,21 @@ function ProfessorSubjects({ professorId: propProfessorId }) {
                 <div className="alert alert-info">
                     No subjects found for this professor.
                 </div>
+                <div className="d-flex justify-content-center mb-3 back-button-subjects-by-professor text-center">
+                    <button className="btn text-white" onClick={() => navigate(`/professors`)}>
+                        ⬅ Back to Professors!
+                    </button>
+                </div>
             </div>
         );
     }
 
     return (
-        <div className="professor-subjects-container container mt-4">
-            <div className="title">
-                <h4 className="ps-title">Professor's Subjects</h4>
+        <div className="professor-subjects-container mt-4">
+            <div className="professor-subjects-title mb-4">
+                <h4 className="mb-4">Subjects <small>by Professor <strong>{professorId}</strong></small></h4>
             </div>
-            <div className="row">
+            <div className="row justify-content-center">
                 {subjects.map((allocation, index) => {
                     const subject = allocation.subject || allocation.subjectName || 'Unknown Subject';
                     const abbreviation = allocation.abbreviation || allocation.subjectCode || 'N/A';
@@ -67,28 +64,17 @@ function ProfessorSubjects({ professorId: propProfessorId }) {
                     const semesterCode = allocation.semesterCode || 'N/A';
 
                     return (
-                        <div key={allocation.id || index} className="col-md-4 mb-4">
-                            <div className="card h-100 shadow-sm">
-                                <div className="card-header">
-                                    {subject}
-                                </div>
+                        <div key={allocation.id || index}
+                             className="col-12 col-md-6 col-lg-4 mb-4 d-flex justify-content-center">
+                            <div className="card">
+                                <div className="card-header">{subject}</div>
                                 <div className="card-body d-flex flex-column">
-                                    <div>
-                                        <h6 className="card-subtitle mb-2"><span className="abbreviation-text">{abbreviation}</span></h6>
-                                        <div className="card-details">
-                                            <p className="card-text mb-1">
-                                                <strong className="card-text-text">Semester:</strong> <span>{semester}</span>
-                                            </p>
-                                            <p className="card-text">
-                                                <strong className="card-text-text">Subject Code:</strong> <span>{semesterCode}</span>
-                                            </p>
-                                        </div>
-                                    </div>
-                                </div>
-                                <div>
+                                    <h6 className="card-subtitle mb-3">{abbreviation}</h6>
+                                    <p className="card-text"><strong>Semester:</strong> {semester}</p>
+                                    <p className="card-text"><strong>Subject Code:</strong> {semesterCode}</p>
                                     <Link
                                         to={`/subject-allocations/professors/${professorId}/subjects/${semesterCode}/topics`}
-                                        className="btn btn-primary mt-auto topics-button"
+                                        className="topics-button mt-auto"
                                     >
                                         View Topics!
                                     </Link>
@@ -98,7 +84,7 @@ function ProfessorSubjects({ professorId: propProfessorId }) {
                     );
                 })}
             </div>
-            <div className="d-flex justify-content-end mb-3 back-button-professors text-center">
+            <div className="d-flex justify-content-center mb-3 back-button-subjects-by-professor text-center">
                 <button className="btn text-white" onClick={() => navigate(`/professors`)}>
                     ⬅ Back to Professors!
                 </button>

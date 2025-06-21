@@ -80,14 +80,16 @@ function ProfessorSubjectTopics() {
 
     if (!topics.length)
         return (
-            <div className="container mt-4">
+            <div className="container mt-2">
                 <div className="alert alert-info">No topics found for this subject.</div>
+                {role === "ROLE_PROFESSOR" && (
                 <Link
                     to={`/subject-allocations/professors/${professorId}/subjects/${subjectId}/topics/add-topic`}
                     className="btn btn-primary pst-add-button"
                 >
                     ➕ Add Topic!
                 </Link>
+                    )}
                 <div className="d-flex justify-content-end mb-3 back-button-subjects-by-professor text-center">
                     <button className="btn text-white" onClick={() => navigate(`/subject-allocations/${professorId}/subjects`)}>
                         ⬅ Back to Subjects by Professor!
@@ -99,9 +101,9 @@ function ProfessorSubjectTopics() {
     return (
         <div className="container mt-4">
             <div className="d-flex justify-content-between align-items-center mb-4 title">
-                <h2 className="mb-0">
-                    Subject:<span> <strong>{subjectName || subjectId}</strong></span>
-                </h2>
+                <div className="professors-subjects-topic-title mb-4">
+                    <h4 className="mb-0"><small>Subject: </small><strong>{subjectName || subjectId}</strong></h4>
+                </div>
                 {role === "ROLE_PROFESSOR" && (
                 <Link
                     to={`/subject-allocations/professors/${professorId}/subjects/${subjectId}/topics/add-topic`}

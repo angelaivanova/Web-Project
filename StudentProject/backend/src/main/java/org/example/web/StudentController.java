@@ -8,6 +8,7 @@ import org.example.service.domain.StudentDomainService;
 import org.springframework.http.ResponseEntity;
 import org.springframework.security.access.prepost.PreAuthorize;
 import org.springframework.web.bind.annotation.*;
+
 import java.util.List;
 import java.util.Optional;
 
@@ -28,6 +29,12 @@ public class StudentController {
     @PreAuthorize("isAuthenticated()")
     public ResponseEntity<List<DisplayStudentDTO>> findAll() {
         return ResponseEntity.ok(this.studentApplicationService.findAll());
+    }
+
+    @GetMapping("/{index}")
+    @PreAuthorize("isAuthenticated()")
+    public ResponseEntity<DisplayStudentDTO> getStudent(@PathVariable("index") String index) {
+        return ResponseEntity.ok(this.studentApplicationService.get(index));
     }
 
     // TODO

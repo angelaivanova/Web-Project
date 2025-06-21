@@ -1,10 +1,23 @@
 import React from 'react';
-import { Link } from 'react-router-dom';
+import {Link, useNavigate} from 'react-router-dom';
 import authService from "../../../repository/Authentication/auth_service";
 
 const StudentTerm = (props) => {
     const role = authService.getCurrentUser()?.role;
     console.log("User role:", role);
+
+    const navigate = useNavigate();
+
+    const handleEditClick = async () => {
+        await props.onEdit(props.term.index);
+        navigate(`/students/edit-student/${props.term.index}`);
+    };
+    const handleDelete = () => {
+        if (window.confirm('Are you sure you want to delete this student?')) {
+            props.onDelete(props.term.id);
+        }
+    };
+
 
     return (
         <tr>
@@ -24,15 +37,11 @@ const StudentTerm = (props) => {
                         >
                             Delete
                         </button>
-                        <Link
-                            className="btn btn-info ml-2"
-                            to={`/students/edit-student/${props.term.index}`}
-                            onClick={() => props.onEdit(props.term.index)}
-                        >
+                        <button className="btn btn-info ml-2" onClick={handleEditClick}>
                             Edit
-                        </Link>
+                        </button>
                     </>
-                )}
+                        )}
             </td>
         </tr>
     );

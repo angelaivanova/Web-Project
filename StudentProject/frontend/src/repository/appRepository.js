@@ -18,6 +18,9 @@ const AppRepository = {
     fetchStudents: () => {
         return axios.get("/students");
     },
+    getStudent: (id) => {
+        return axios.get(`/students/${id}`);
+    },
 
     addStudent: (index, name, lastname, username, email) => {
         return axios.post("/students/add-student", {
@@ -29,9 +32,8 @@ const AppRepository = {
         });
     },
     // TODO
-    updateStudent: (id, index, name, lastname, username, email) => {
-        return axios.put(`/students/edit-student/${id}`, {
-            "index":index,
+    updateStudent: (index, name, lastname, username, email) => {
+        return axios.put(`/students/edit-student/${index}`, {
             "name": name,
             "lastname": lastname,
             "username": username,
@@ -39,8 +41,8 @@ const AppRepository = {
         });
     },
     // TODO
-    deleteStudent: (id) => {
-        return axios.delete(`/students/delete-student/${id}`);
+    deleteStudent: (index) => {
+        return axios.delete(`/students/delete-student/${index}`);
     },
 
     // ====== SUBJECTS ======
@@ -58,6 +60,10 @@ const AppRepository = {
     // ====== TOPICS ======
     fetchTopics: () => {
         return axios.get("/subject-allocations/topics");
+    },
+
+    getTopic: (id) => {
+        return axios.get(`/topics/${id}`);
     },
 
     addTopic: (name, description, fromDate, toDate, groupCount, membersPerGroup, professorId, subjectId) => {
@@ -91,11 +97,18 @@ const AppRepository = {
     },
 
     // ====== TEAMS ======
+    fetchTeams: () => {
+        return axios.get("/teams/topic/{topicId}");
+    },
     createTeam: (topicId, name, studentIds) => {
         return axios.post(`/teams/create-team/${topicId}`, {
             name,
             studentIds
         });
+    },
+
+    deleteTeam: (id) => {
+        return axios.delete(`/teams/delete-team/${id}`);
     },
 };
 

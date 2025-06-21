@@ -3,6 +3,7 @@ import ReactPaginate from 'react-paginate';
 import { Link } from 'react-router-dom';
 import TopicTerm from '../TopicTerm/topicTerm';
 import './topic.css';
+import authService from "../../../repository/Authentication/auth_service";
 
 class Topic extends React.Component {
     constructor(props) {
@@ -10,8 +11,15 @@ class Topic extends React.Component {
         this.state = {
             page: 0,
             size: 10,
-            searchText: ''
+            searchText: '',
+            role: null
         };
+    }
+
+    componentDidMount() {
+        const currentUser = authService.getCurrentUser();
+        this.setState({ role: currentUser?.role || null });
+        console.log("User role:", currentUser?.role);
     }
 
     handlePageClick = (data) => {
@@ -37,10 +45,9 @@ class Topic extends React.Component {
     };
 
     render() {
-        const { size, page, searchText } = this.state;
+        const { size, page, searchText, role } = this.state;
         const topics = this.props.topics || [];
 
-        // Optional search filter by topic name or description
         const filteredTopics = topics.filter(topic =>
             topic.name.toLowerCase().includes(searchText.toLowerCase()) ||
             (topic.description && topic.description.toLowerCase().includes(searchText.toLowerCase()))
@@ -57,7 +64,6 @@ class Topic extends React.Component {
                     <h2>Topics</h2>
                 </div>
 
-                {/* Optional search box */}
                 <div className="mb-4">
                     <input
                         type="text"
@@ -87,11 +93,16 @@ class Topic extends React.Component {
                     </table>
                 </div>
 
-                <div className="mb-3 text-center">
-                    <Link className="btn btn-dark" to="/topics/add-topic">
-                        Add new Topic
-                    </Link>
-                </div>
+                {role === "ROLE_PROFESSOR" && (
+                    <div className="mb-3 text-center">
+                        <Link
+                            className="btn btn-dark"
+                            to="/subject-allocations/professors/${professorId}/subjects/${subjectId}/topics/add-topic"
+                        >
+                            Add new Topic
+                        </Link>
+                    </div>
+                )}
 
                 <div className="d-flex justify-content-center">
                     <ReactPaginate

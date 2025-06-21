@@ -32,7 +32,6 @@ const Header = () => {
                         <strong>Projects Management System</strong>
                     </a>
 
-                    {/* Toggle button */}
                     <button
                         className="navbar-toggler"
                         type="button"
@@ -59,8 +58,16 @@ const Header = () => {
                                     <li className="nav-item"><Link className="nav-link" to="/login"><strong>Login</strong></Link></li>
                                 </>
                             ) : (
-                                <li className="nav-item"><button className="nav-link btn btn-link" onClick={handleLogout}><strong>Logout</strong></button></li>
-                            )}
+                                <>
+                                    <li className="nav-item nav-link text-white pe-3">
+                                        <strong>{currentUser.username || currentUser.name || "User"}</strong>
+                                    </li>
+                                    <li className="nav-item">
+                                        <button className="nav-link btn btn-link" onClick={handleLogout}>
+                                            <strong>Logout</strong>
+                                        </button>
+                                    </li>
+                                </>                            )}
                         </ul>
                     </div>
                 </div>

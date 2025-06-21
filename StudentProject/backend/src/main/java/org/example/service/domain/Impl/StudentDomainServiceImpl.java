@@ -1,5 +1,6 @@
 package org.example.service.domain.Impl;
 
+import org.example.model.DTOs.studentDTO.DisplayStudentDTO;
 import org.example.model.Student;
 import org.example.repository.StudentRepository;
 import org.example.service.domain.StudentDomainService;
@@ -22,6 +23,11 @@ public class StudentDomainServiceImpl implements StudentDomainService {
     }
 
     @Override
+    public Student get(String index) {
+        return studentRepository.findByIndex(index);
+    }
+
+    @Override
     public Optional<Student> create(Student student) {
         Student student_obj = this.studentRepository.save(student);
 
@@ -34,7 +40,7 @@ public class StudentDomainServiceImpl implements StudentDomainService {
 
         if (student_obj.isPresent()) {
             Student existing_student = student_obj.get();
-            existing_student.setIndex(student.getIndex());
+
             existing_student.setName(student.getName());
             existing_student.setLastName(student.getLastName());
             existing_student.setEmail(student.getEmail());

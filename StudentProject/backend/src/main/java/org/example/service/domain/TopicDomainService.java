@@ -1,5 +1,8 @@
 package org.example.service.domain;
 
+import org.example.model.DTOs.topicDTO.CreateTopicDTO;
+import org.example.model.DTOs.topicDTO.DisplayTopicDTO;
+import org.example.model.Student;
 import org.example.model.Topic;
 import java.util.List;
 import java.util.Optional;

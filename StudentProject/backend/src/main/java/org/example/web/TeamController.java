@@ -1,5 +1,8 @@
 package org.example.web;
 
+import jakarta.transaction.Transactional;
+import org.example.model.DTOs.studentDTO.DisplayStudentDTO;
+import org.example.service.application.TeamApplicationService;
 import org.springframework.http.HttpStatus;
 import org.example.model.DTOs.teamDTO.CreateTeamDTO;
 import org.example.model.DTOs.teamDTO.DisplayTeamDTO;
@@ -15,10 +18,19 @@ import java.util.List;
 public class TeamController {
 
     private final TopicApplicationService topicApplicationService;
+    private final TeamApplicationService teamApplicationService;
 
-    public TeamController(TopicApplicationService topicApplicationService) {
+    public TeamController(TopicApplicationService topicApplicationService, TeamApplicationService teamApplicationService) {
         this.topicApplicationService = topicApplicationService;
+        this.teamApplicationService = teamApplicationService;
     }
+
+    @GetMapping
+    @PreAuthorize("isAuthenticated()")
+    public ResponseEntity<List<DisplayTeamDTO>> findAll() {
+        return ResponseEntity.ok(this.teamApplicationService.findAll());
+    }
+
 
     @PostMapping("/create-team/{topicId}")
     @PreAuthorize("hasAnyRole('PROFESSOR', 'STUDENT')")
@@ -66,15 +78,13 @@ public class TeamController {
         }
     }
 
-    @DeleteMapping("/{teamId}")
-    @PreAuthorize("isAuthenticated()")
-    public ResponseEntity<Void> deleteTeam(@PathVariable("teamId") String teamId) {
-        try {
-            topicApplicationService.deleteTeam(teamId, "anonymous");
-            return ResponseEntity.noContent().build();
-        } catch (Exception e) {
-            System.err.println("Error deleting team: " + e.getMessage());
-            return ResponseEntity.status(HttpStatus.INTERNAL_SERVER_ERROR).build();
-        }
+    @DeleteMapping("/delete-team/{id}")
+    @Transactional
+    @PreAuthorize("hasRole('PROFESSOR')")
+    public ResponseEntity<Void> delete(@PathVariable("id") String id) {
+        this.teamApplicationService.delete(id);
+
+        return ResponseEntity.noContent().build();
     }
+
 }

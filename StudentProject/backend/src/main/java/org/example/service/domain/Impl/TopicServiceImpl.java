@@ -1,8 +1,6 @@
 package org.example.service.domain.Impl;
 
-import org.example.model.Student;
-import org.example.model.Team;
-import org.example.model.Topic;
+import org.example.model.*;
 import org.example.model.exceptions.TopicIsAlreadyFullException;
 import org.example.repository.TopicRepository;
 import org.example.service.domain.TopicDomainService;

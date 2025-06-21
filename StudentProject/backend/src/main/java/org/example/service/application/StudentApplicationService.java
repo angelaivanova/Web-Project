@@ -9,6 +9,8 @@ public interface StudentApplicationService {
 
     List<DisplayStudentDTO> findAll();
 
+    DisplayStudentDTO get(String index);
+
     Optional<DisplayStudentDTO> create(CreateStudentDTO createStudentDTO);
 
     Optional<DisplayStudentDTO> update(String index, CreateStudentDTO createStudentDTO);

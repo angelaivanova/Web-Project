@@ -1,86 +1,109 @@
-import React from 'react';
-import {useNavigate} from 'react-router-dom';
+import React, { useEffect, useState } from 'react';
+import { useNavigate, useParams } from 'react-router-dom';
+import AppService from '../../../repository/appRepository';
 
-const StudentEdit = (props) => {
-
+const StudentEdit = ({ onEditStudent }) => {
+    const { index } = useParams();
     const navigate = useNavigate();
-    
 
-    const [formData, updateFormData] = React.useState({
+    const [student, setStudent] = useState(null);
+    const [formData, updateFormData] = useState({
+        index: "",
         name: "",
-        surname: "",
-        index:  "",
-        email:  ""
-    })
+        lastname: "",
+        username: "",
+        email: ""
+    });
+
+    useEffect(() => {
+        AppService.getStudent(index)
+            .then(res => setStudent(res.data))
+            .catch(err => console.error("Error fetching student:", err));
+    }, [index]);
 
     const handleChange = (e) => {
         updateFormData({
             ...formData,
             [e.target.name]: e.target.value.trim()
-        })
-    }
+        });
+    };
 
     const onFormSubmit = (e) => {
         e.preventDefault();
-        const name = formData.name !== "" ? formData.name : props.student.name;
-        const surname = formData.surname !== "" ? formData.surname : props.student.surname;
-        const index = formData.index !== "" ? formData.index : props.student.index;
-        const email = formData.email !== "" ? formData.email : props.student.email;
-        
-        props.onEditStudent(props.student?.id, name, surname, index, email);
+
+        const updatedIndex = formData.index || student.index;
+        const name = formData.name || student.name;
+        const lastname = formData.lastname || student.lastname;
+        const username = formData.username || student.username;
+        const email = formData.email || student.email;
+
+        onEditStudent(student.index, name, lastname, username, email);
         navigate("/students");
+    };
+
+    if (!student) {
+        return <p className="text-center mt-5">Loading student...</p>;
     }
 
-    return(
+    return (
         <div className="row mt-5">
             <div className="col-md-5">
                 <form onSubmit={onFormSubmit}>
+                    <div className="form-group">
+                        <label htmlFor="index">Index</label>
+                        <input type="number"
+                               className="form-control"
+                               id="index"
+                               name="index"
+                               placeholder={student.index}
+                               onChange={handleChange}
+                        />
+                    </div>
                     <div className="form-group">
                         <label htmlFor="name">Student name</label>
                         <input type="text"
                                className="form-control"
                                id="name"
                                name="name"
-                               placeholder={" "}
+                               placeholder={student.name}
                                onChange={handleChange}
                         />
                     </div>
                     <div className="form-group">
-                        <label htmlFor="price">Surname</label>
+                        <label htmlFor="lastname">Lastname</label>
                         <input type="text"
                                className="form-control"
-                               id="surname"
-                               name="surname"
-                               placeholder={props.student.surname}
+                               id="lastname"
+                               name="lastname"
+                               placeholder={student.lastname}
                                onChange={handleChange}
                         />
                     </div>
                     <div className="form-group">
-                        <label htmlFor="price">Index</label>
-                        <input type="number"
+                        <label htmlFor="username">Username</label>
+                        <input type="text"
                                className="form-control"
-                               id="index"
-                               name="index"
-                               placeholder={"props.student.index"}
+                               id="username"
+                               name="username"
+                               placeholder={student.username}
                                onChange={handleChange}
                         />
                     </div>
                     <div className="form-group">
-                        <label htmlFor="quantity">Email</label>
+                        <label htmlFor="email">Email</label>
                         <input type="text"
                                className="form-control"
                                id="email"
                                name="email"
-                               placeholder={"props.student.email"}
+                               placeholder={student.email}
                                onChange={handleChange}
                         />
                     </div>
-                    
-                    <button id="submit" type="submit" className="btn btn-primary">Submit</button>
+                    <button type="submit" className="btn btn-primary">Submit</button>
                 </form>
             </div>
         </div>
-    )
-}
+    );
+};
 
 export default StudentEdit;

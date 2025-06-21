@@ -18,6 +18,7 @@
     background-color: #0ef;
     color: #2c5364;
     font-weight: bold;
+    height: 40px;
 }
 
 .create-team-button:hover {
@@ -29,6 +30,7 @@
     background-color: darkred;
     color: white;
     font-weight: bold;
+    height: 40px;
 }
 
 .cancel-and-remove-create-team-button:hover {

@@ -2,7 +2,10 @@ package org.example.service.application;
 
 import org.example.model.DTOs.teamDTO.CreateTeamDTO;
 import org.example.model.DTOs.teamDTO.DisplayTeamDTO;
+import org.example.model.DTOs.topicDTO.CreateTopicDTO;
 import org.example.model.DTOs.topicDTO.DisplayTopicDTO;
+import org.example.model.Topic;
+
 import java.nio.file.AccessDeniedException;
 import java.util.List;
 import java.util.Optional;

@@ -168,10 +168,17 @@
     flex-direction: column;
 }
 
-.title h2 {
-    margin: 0;
-    font-size: 1.5rem;
-    flex-grow: 1;
+.professors-subjects-topic-title {
+    color: antiquewhite;
+    font-size: 40px;
+    margin-bottom: 20px;
+    text-align: center;
+    transition: color 0.3s, text-shadow 0.3s;
+}
+
+.professors-subjects-topic-title:hover {
+    color: #ffffff;
+    text-shadow: 0 0 10px rgba(109, 213, 250, 0.6);
 }
 
 .title a.btn.btn-success {

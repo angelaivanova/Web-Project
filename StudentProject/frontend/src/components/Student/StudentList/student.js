@@ -57,15 +57,15 @@ class Student extends React.Component {
                     <h2>Students</h2>
                 </div>
 
-                <div className="mb-4">
-                    <input
-                        type="text"
-                        className="form-control"
-                        placeholder="Search students by name..."
-                        value={searchText}
-                        onChange={this.handleSearchChange}
-                    />
-                </div>
+                {/*<div className="mb-4">*/}
+                {/*    <input*/}
+                {/*        type="text"*/}
+                {/*        className="form-control"*/}
+                {/*        placeholder="Search students by name..."*/}
+                {/*        value={searchText}*/}
+                {/*        onChange={this.handleSearchChange}*/}
+                {/*    />*/}
+                {/*</div>*/}
 
                 <div className="table-responsive">
                     <table className="table table-striped table-dark">

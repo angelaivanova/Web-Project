@@ -19,6 +19,7 @@ import CreateTeam from "../Team/CreateTeam/CreateTeam";
 import StudentAdd from "../Student/StudentAdd/studentAdd";
 import TeamsByTopic from "../Team/TeamsByTopic/TeamsByTopic";
 import ProfessorSubjectTopics from "../ProfessorSubjectTopics/ProfessorSubjectTopics"
+import StudentEdit from "../Student/StudentEdit/studentEdit";
 
 class App extends Component {
     constructor(props) {
@@ -78,7 +79,31 @@ class App extends Component {
             })
             .catch((error) => console.error("Error adding student:", error));
     };
-    // TODO updateStudent & deleteStudent
+    updateStudent = (index, name, lastname, username, email) => {
+        AppService.updateStudent(index, name, lastname, username, email)
+            .then(() => {
+                this.loadStudents();
+            })
+            .catch((error) => console.error("Error updating student:", error));
+    };
+    deleteStudent = (index) => {
+        AppService.deleteStudent(index)
+            .then(() => {
+                this.loadStudents();
+            })
+            .catch((error) => console.error("Error deleting student:", error));
+    };
+    getStudent= (index) => {
+        AppService.getStudent(index)
+            .then((data) => {
+                this.setState({
+                    selectedStudent: data.data,
+                });
+            })
+            .catch((error) => console.error("Error fetching student:", error));
+    };
+
+
 
     // ====== SUBJECTS ======
     loadSubjects = () => {
@@ -140,6 +165,21 @@ class App extends Component {
             .catch((error) => console.error("Error deleting topic:", error));
     };
 
+    // ==== TEAM ====
+    loadTeams = () => {
+        AppService.fetchTeams()
+            .then((data) => {
+                this.setState({teams: data.data});
+            })
+            .catch((error) => console.error("Error fetching teams:", error));
+    };
+    deleteTeam = (id) => {
+        AppService.deleteTeam(id)
+            .then(() => {
+                this.loadTeams();
+            })
+            .catch((error) => console.error("Error deleting team:", error));
+    };
     render() {
         return (
             <Router>
@@ -164,6 +204,17 @@ class App extends Component {
                                 element={
                                     <Student
                                         students={this.state.students}
+                                        onEdit={this.getStudent}
+                                        onDelete={this.deleteStudent}
+                                    />
+                                }
+                            />
+                            <Route
+                                path="/students/edit-student/:index"
+                                element={
+                                    <StudentEdit
+                                        student={this.state.selectedStudent}
+                                        onEditStudent={this.updateStudent}
                                     />
                                 }
                             />
@@ -172,10 +223,10 @@ class App extends Component {
                                 element={
                                     <StudentAdd
                                         onAddStudent={this.addStudent}
+
                                     />
                                 }
                             />
-                            // TODO edit-student & delete-student
 
                             {/*SUBJECTS*/}
                             <Route
@@ -196,6 +247,16 @@ class App extends Component {
                                         topics={this.state.topics}
                                         onEdit={this.getTopic}
                                         onDelete={this.deleteTopic}
+                                    />
+                                }
+                            />
+                            {/*TEAMS*/}
+                            <Route
+                                path="/teams/topic/{topicId}"
+                                element={
+                                    <TeamsByTopic
+                                        teams={this.state.teams}
+                                        onDelete={this.deleteTeam}
                                     />
                                 }
                             />
